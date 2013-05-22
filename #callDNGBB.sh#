@@ -1,0 +1,1 @@
+~/files/DeNovoGear/BetaBinomial/BetaBinomial_paired/build/src/denovogear-bb bb_paired --input_RD_file temp.ip.rdf --op_calls_file temp.op --ped temp.ped --alphaRR 3.766 --betaRR 148.369 --alphaRA 6.702027 --betaRA 9.301758 --alphaAA  204.776 --betaAA 1
