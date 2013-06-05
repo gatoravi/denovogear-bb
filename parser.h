@@ -4,7 +4,7 @@
 #include "bcf.h"
 #include "pedParser.h"
 
-
+#define ID_LENGTH 1000
 #define MAX_QCALL_LINE 2048
 
 // Store SNP info 

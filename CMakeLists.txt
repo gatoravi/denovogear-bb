@@ -48,6 +48,10 @@ ENDIF(ZLIB_FOUND)
 ADD_SUBDIRECTORY(newmat)
 ADD_SUBDIRECTORY(utils)
 INCLUDE_DIRECTORIES(BEFORE "${CMAKE_CURRENT_SOURCE_DIR}/utils" "${CMAKE_CURRENT_SOURCE_DIR}/newmat")
+INCLUDE_DIRECTORIES(BEFORE /home/comp/exlab/aramu/files/Src/samtools-0.1.18)
+INCLUDE_DIRECTORIES(BEFORE /home/comp/exlab/aramu/files/Src/R-devel/include)
+INCLUDE_DIRECTORIES(BEFORE /home/comp/exlab/aramu/files/Src/R-devel/library/Rcpp/include)
+INCLUDE_DIRECTORIES(BEFORE /home/comp/exlab/aramu/files/Src/R-devel/library/RInside/include)
 
 #INCLUDE_DIRECTORIES(BEFORE "${CMAKE_CURRENT_BINARY_DIR}")
 INCLUDE_DIRECTORIES(BEFORE "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -60,15 +64,24 @@ ADD_EXECUTABLE(denovogear-bb ${PROJ_MACOSX_BUNDLE}
   pedParser.cc
   bcf2Qcall.cc bcf2Paired.cc
   BBPaired.cc
+  AlphaBeta.cc
+  rinside.BBFit.cc
+  DNGCaller.cc
 )
 
 IF(USE_STATIC_LIBS)
   SET_TARGET_PROPERTIES(denovogear-bb PROPERTIES LINK_SEARCH_END_STATIC On)
 ENDIF(USE_STATIC_LIBS)
 
+TARGET_LINK_LIBRARIES(denovogear-bb /home/comp/exlab/aramu/files/Src/samtools-0.1.18-denovogearbb-mod/libbam.a)
 TARGET_LINK_LIBRARIES(denovogear-bb newmat dngutils)
 TARGET_LINK_LIBRARIES(denovogear-bb ${ZLIB_LIBRARIES})
 TARGET_LINK_LIBRARIES(denovogear-bb ${CMAKE_REQUIRED_LIBRARIES})
+TARGET_LINK_LIBRARIES(denovogear-bb /home/comp/exlab/aramu/files/Src/R-devel/lib/libRblas.so)
+TARGET_LINK_LIBRARIES(denovogear-bb /home/comp/exlab/aramu/files/Src/R-devel/lib/libRlapack.so)
+TARGET_LINK_LIBRARIES(denovogear-bb /home/comp/exlab/aramu/files/Src/R-devel/lib/libR.so)
+TARGET_LINK_LIBRARIES(denovogear-bb /home/comp/exlab/aramu/files/Src/R-devel/library/Rcpp/lib/libRcpp.a)
+TARGET_LINK_LIBRARIES(denovogear-bb /home/comp/exlab/aramu/files/Src/R-devel/library/RInside/lib/libRInside.a)
 
 INSTALL(TARGETS denovogear-bb RUNTIME DESTINATION bin ${PROJ_INSTALL_EXTRA_ARGS})
 

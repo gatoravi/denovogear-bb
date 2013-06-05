@@ -42,3 +42,4 @@ void pair_like(pair_t tumor, pair_t normal, vector<vector<string> > &tgtPair,
 	       lookup_pair_t & lookupPair, int flag, string op_vcf_f, ofstream& fo_vcf, 
          double pp_cutoff, int RD_cutoff, int& n_site_pass);
 
+int callMakePairedLookup(vector<vector<string > >& tgtPair, lookup_pair_t& lookupPair);
